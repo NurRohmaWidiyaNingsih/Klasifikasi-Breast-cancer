@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-image: url('https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/radarmalang/2021/02/kanker.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 0;
+            color: #444;
+            font-family: 'Segoe Print', cursive;
+            text-shadow: 
+            -1px -1px 0 #fff,  
+            1px -1px 0 #fff,
+            -1px  1px 0 #fff,
+            1px  1px 0 #fff;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 0;
+            margin-top: 0;
+            color: #666;
+            font-family: 'Segoe Print', cursive;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+        form {
+            width: 90%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+        input[type="text"]:hover {
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/">
+        <h1>Breast Cancer Prediction Model</h1>
+        <div class="form-group">
+            <div>
+                <label for="clump_thickness">Clump Thickness:</label>
+                <input type="text" id="clump_thickness" name="clump_thickness" placeholder="Input Clump Thickness..." required>
+            </div>
+            <div>
+                <label for="cell_size">Uniformity of Cell Size:</label>
+                <input type="text" id="cell_size" name="cell_size" placeholder="Input Uniformity of Cell Size..." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="cell_shape">Uniformity of Cell Shape:</label>
+                <input type="text" id="cell_shape" name="cell_shape" placeholder="Input Uniformity of Cell Shape..." required>
+            </div>
+            <div>
+                <label for="marginal_adhesion">Marginal Adhesion:</label>
+                <input type="text" id="marginal_adhesion" name="marginal_adhesion" placeholder="Input Marginal Adhesion..." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+               
+                <label for="epithelial_size">Single Epithelial Cell Size:</label>
+                <input type="text" id="epithelial_size" name="epithelial_size" placeholder="Input Single Epithelial Cell Size..." required>
+            </div>
+            <div>
+                <label for="bare_nuclei">Bare Nuclei:</label>
+                <input type="text" id="bare_nuclei" name="bare_nuclei" placeholder="Input Bare Nuclei..." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="bland_chromatin">Bland Chromatin:</label>
+                <input type="text" id="bland_chromatin" name="bland_chromatin" placeholder="Input Bland Chromatin..." required>
+            </div>
+            <div>
+                <label for="normal_nucleoli">Normal Nucleoli:</label>
+                <input type="text" id="normal_nucleoli" name="normal_nucleoli" placeholder="Input Normal Nucleoli..." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="mitoses">Mitoses:</label>
+                <input type="text" id="mitoses" name="mitoses" placeholder="Input Mitoses..." required>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Predict">
+        </div>
+    </form>
+    {% if predicted_class %}
+        <div class="result">
+            <h3>Prediction Result:</h3>
+            <p>{{ predicted_class }}</p>
+        </div>
+    {% endif %}
+    {% if error_message %}
+        <div class="result">
+            <h3>Error:</h3>
+            <p>{{ error_message }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
